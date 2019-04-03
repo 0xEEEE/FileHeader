@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Lime
 # @Date:   2013-10-28 13:39:48
-# @Last Modified by:   qkdreyer
-# @Last Modified time: 2017-08-14 16:48:32
+# @Last Modified by:   Yitao
+# @Last Modified time: 2019-04-03 14:33:19
 
 import os
 import sys
@@ -288,7 +288,8 @@ def get_time(path):
     else:
         c_time, m_time = map(
             datetime.fromtimestamp, (stat.st_ctime, stat.st_mtime))
-
+        if platform.system() == 'Darwin':
+            c_time = datetime.fromtimestamp(stat.st_birthtime)
     return c_time, m_time
 
 
@@ -854,3 +855,4 @@ class FileHeaderListener(sublime_plugin.EventListener):
             settings.set('c_time', pickle.dumps(c_time))
 
         self.insert_template(view, True)
+        
