@@ -2,7 +2,7 @@
 # @Author: Lime
 # @Date:   2013-10-28 13:39:48
 # @Last Modified by:   Yitao
-# @Last Modified time: 2019-04-03 14:33:19
+# @Last Modified time: 2019-07-25 17:58:06
 
 import os
 import sys
@@ -288,7 +288,7 @@ def get_time(path):
     else:
         c_time, m_time = map(
             datetime.fromtimestamp, (stat.st_ctime, stat.st_mtime))
-        if platform.system() == 'Darwin':
+        if sublime.platform() == 'osx':
             c_time = datetime.fromtimestamp(stat.st_birthtime)
     return c_time, m_time
 
